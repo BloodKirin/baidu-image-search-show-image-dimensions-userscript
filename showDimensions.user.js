@@ -5,15 +5,12 @@
 // @description:en  Displays image dimensions (eg. "1920 × 1080") for each thumbnail on the Baidu Image Search results page.
 // @icon            https://www.baidu.com/cache/icon/favicon.ico
 // @namespace       https://github.com/BloodKirin/baidu-image-search-show-image-dimensions-userscript
-// @author          Sonic Wind
-// @version         1.0.0
-// @license         MIT
+// @author          SonicWind
+// @version         1.0.1
+// @license         MIT License
 // @homepageURL     https://github.com/BloodKirin/baidu-image-search-show-image-dimensions-userscript
 // @supportURL      https://github.com/BloodKirin/baidu-image-search-show-image-dimensions-userscript/issues
-// @inject-into     content
 // @match           *://image.baidu.com/*tn=baiduimage*
-// @compatible      firefox Tested on Firefox v99 with Violentmonkey v2.13.0, Tampermonkey v4.16 and Greasemonkey v4.11
-// @compatible      chrome Tested on Chrome v100 with Violentmonkey v2.13.0 and Tampermonkey v4.16
 // ==/UserScript==
 
 (function () {
@@ -39,7 +36,7 @@
       margin-left: 2px;
     }
 
-    .img-tagdimsswitch:hover .img-tagdims {
+    .hactive:hover .imgbox .imgbox-border .img-tagdims {
       display:none;
     }
     `);
@@ -61,12 +58,12 @@
 
         // Create p tag and insert text
         const dimensionsDiv = document.createElement('p');
-        const dimensionsContent = document.createTextNode(width + ' X ' + height);
+        const dimensionsContent = document.createTextNode(width + ' x ' + height);
         dimensionsDiv.appendChild(dimensionsContent);
 
         // Add CSS Class to the imgbox
         const imgbox = image.children[0].children[1];
-        imgbox.classList.add('img-tagdimsswitch');
+//         imgbox.classList.add('img-tagdimsswitch');
 
         // Append everything to thumbnail
         imgbox.appendChild(dimensionsDiv);
